@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+	 http://www.springframework.org/schema/beans
+	 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	  http://www.springframework.org/schema/context
+	 http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	  http://www.springframework.org/schema/mvc
+	 http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+    <!--添加扫描注解控制器-->
+<!--    <context:component-scan base-package="com.team.house.controller,com.team.house.potal.controller"/>-->
+    <context:component-scan base-package="com.team.house.controller,com.team.house.potal.controller"></context:component-scan>
+    <!-- 2.开启mvc注解驱动  --> <!--<mvc:annotation-driven/>-->
+    <mvc:annotation-driven>
+        <!--json格式和string格式的响应--> <!--string格式响应-->
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/page/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+    <!--实现文件上传的配置-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="5242880"/>
+    </bean>
+
+    <!--静态资源放行-->
+    <mvc:default-servlet-handler/>
+
+
+<!--
+
+&lt;!&ndash;velocity模板配置&ndash;&gt;
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/vm/"/>
+        <property name="configLocation" value="classpath:velocity.properties"/>
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="output.encoding">UTF-8</prop>
+            </props>
+        </property>
+    </bean>
+    &lt;!&ndash;VelocityLayout视图解析器&ndash;&gt;
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityLayoutViewResolver">
+        <property name="suffix" value=".vm"/>
+        <property name="prefix" value=""/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+        &lt;!&ndash;所有布局文件的默认路径&ndash;&gt;
+        <property name="layoutUrl" value="layout/layout.vm"/>
+    </bean>
+-->
+
+
+</beans>
