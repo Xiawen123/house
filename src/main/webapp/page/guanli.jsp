@@ -1,4 +1,4 @@
-﻿<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; utf-8" %>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
   Object o=session.getAttribute("userInfo");
